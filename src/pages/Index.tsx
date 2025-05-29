@@ -50,6 +50,8 @@ const Index = () => {
         return <CampaignsManagement />;
       case 'whatsapp-logs':
         return <WhatsAppLogsManagement />;
+      case 'pagamenti':
+        return <PaymentsManagement />;
       default:
         return (
           <div className="space-y-6">
