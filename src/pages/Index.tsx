@@ -6,6 +6,7 @@ import DashboardContent from '../components/DashboardContent';
 import TerapistiManagement from '../components/TerapistiManagement';
 import PatientsManagement from '../components/PatientsManagement';
 import AppSettersManagement from '../components/AppSettersManagement';
+import ProspectTerapistiManagement from '../components/ProspectTerapistiManagement';
 import Breadcrumb from '../components/Breadcrumb';
 
 const Index = () => {
@@ -38,6 +39,8 @@ const Index = () => {
         return <PatientsManagement />;
       case 'app-setters':
         return <AppSettersManagement />;
+      case 'prospect':
+        return <ProspectTerapistiManagement />;
       default:
         return (
           <div className="space-y-6">
