@@ -216,6 +216,10 @@ const PatientsManagement = () => {
     ));
   };
 
+  const handlePatientClick = (patient: Patient) => {
+    setSelectedPatient(patient);
+  };
+
   const handleBulkAction = (action: string) => {
     console.log(`Bulk action ${action} for patients:`, selectedPatients);
     // Implement bulk actions here
@@ -404,7 +408,7 @@ const PatientsManagement = () => {
       <PatientKanbanBoard
         patients={filteredPatients}
         onPatientMove={handlePatientMove}
-        onPatientClick={setSelectedPatient}
+        onPatientClick={handlePatientClick}
         selectedPatients={selectedPatients}
         onPatientSelect={setSelectedPatients}
       />
