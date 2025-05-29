@@ -222,7 +222,7 @@ const PaymentMethodsManager = () => {
             <div className="flex items-center justify-between p-3 border rounded-lg">
               <div>
                 <p className="font-medium">Preferenza Metodo Pagamento</p>
-                <p className="text-sm text-gray-600">Revolut per importi > €500, Stripe per il resto</p>
+                <p className="text-sm text-gray-600">Revolut per importi maggiori di €500, Stripe per il resto</p>
               </div>
               <Badge className="bg-green-500">Attivo</Badge>
             </div>
