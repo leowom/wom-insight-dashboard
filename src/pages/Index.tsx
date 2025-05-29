@@ -10,6 +10,7 @@ import ProspectTerapistiManagement from '../components/ProspectTerapistiManageme
 import LandingPagesManagement from '../components/LandingPagesManagement';
 import CampaignsManagement from '../components/CampaignsManagement';
 import WhatsAppLogsManagement from '../components/WhatsAppLogsManagement';
+import PaymentsManagement from '../components/PaymentsManagement';
 import Breadcrumb from '../components/Breadcrumb';
 
 const Index = () => {
