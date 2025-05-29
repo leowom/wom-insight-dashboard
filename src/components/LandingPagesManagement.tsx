@@ -185,18 +185,18 @@ const LandingPagesManagement = () => {
                       alt={page.terapistaName}
                       className="w-12 h-12 rounded-full object-cover"
                     />
-                    <div>
-                      <CardTitle className="text-lg">{page.terapistaName}</CardTitle>
-                      <p className="text-sm text-gray-600">{page.specialization}</p>
+                    <div className="flex-1 min-w-0">
+                      <CardTitle className="text-lg truncate">{page.terapistaName}</CardTitle>
+                      <p className="text-sm text-gray-600 truncate">{page.specialization}</p>
                     </div>
+                    <Badge className={getStatusColor(page.status)}>
+                      {page.status}
+                    </Badge>
                   </div>
-                  <Badge className={getStatusColor(page.status)}>
-                    {page.status}
-                  </Badge>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="text-sm">
-                    <p className="text-blue-600 hover:underline cursor-pointer">
+                    <p className="text-blue-600 hover:underline cursor-pointer truncate">
                       {page.url}
                     </p>
                   </div>
@@ -216,21 +216,40 @@ const LandingPagesManagement = () => {
                     </div>
                   </div>
 
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="outline" className="flex-1">
-                      <Edit className="h-4 w-4 mr-1" />
-                      Modifica
-                    </Button>
-                    <Button size="sm" variant="outline" className="flex-1">
-                      <Eye className="h-4 w-4 mr-1" />
-                      Anteprima
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      <BarChart3 className="h-4 w-4" />
-                    </Button>
-                    <Button size="sm" variant="outline">
-                      {page.status === 'Live' ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                    </Button>
+                  <div className="space-y-2">
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button size="sm" variant="outline" className="text-xs">
+                        <Edit className="h-3 w-3 mr-1" />
+                        Modifica
+                      </Button>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        <Eye className="h-3 w-3 mr-1" />
+                        Anteprima
+                      </Button>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button size="sm" variant="outline" className="text-xs">
+                        <BarChart3 className="h-3 w-3 mr-1" />
+                        Analytics
+                      </Button>
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        className={`text-xs ${page.status === 'Live' ? 'text-orange-600 hover:text-orange-700' : 'text-green-600 hover:text-green-700'}`}
+                      >
+                        {page.status === 'Live' ? (
+                          <>
+                            <Pause className="h-3 w-3 mr-1" />
+                            Pausa
+                          </>
+                        ) : (
+                          <>
+                            <Play className="h-3 w-3 mr-1" />
+                            Attiva
+                          </>
+                        )}
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
