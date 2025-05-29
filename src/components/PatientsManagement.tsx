@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Search, Filter, Calendar, Download, MessageSquare, Phone, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,7 +9,8 @@ import PatientKanbanBoard from './PatientKanbanBoard';
 import PatientDetailModal from './PatientDetailModal';
 import Breadcrumb from './Breadcrumb';
 
-interface Patient {
+// Shared Patient interface that both components will use
+export interface Patient {
   id: string;
   name: string;
   phone: string;
