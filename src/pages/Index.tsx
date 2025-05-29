@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import DashboardContent from '../components/DashboardContent';
 import TerapistiManagement from '../components/TerapistiManagement';
+import PatientsManagement from '../components/PatientsManagement';
 import Breadcrumb from '../components/Breadcrumb';
 
 const Index = () => {
@@ -33,15 +34,7 @@ const Index = () => {
       case 'terapisti':
         return <TerapistiManagement />;
       case 'pazienti':
-        return (
-          <div className="space-y-6">
-            <Breadcrumb items={['Gestione', 'Pazienti']} />
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-              <h2 className="text-2xl font-bold mb-4">Gestione Pazienti</h2>
-              <p className="text-gray-600">Visualizza e gestisci tutti i pazienti registrati.</p>
-            </div>
-          </div>
-        );
+        return <PatientsManagement />;
       default:
         return (
           <div className="space-y-6">
