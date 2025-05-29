@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -12,6 +11,7 @@ import CampaignsManagement from '../components/CampaignsManagement';
 import WhatsAppLogsManagement from '../components/WhatsAppLogsManagement';
 import PaymentsManagement from '../components/PaymentsManagement';
 import Breadcrumb from '../components/Breadcrumb';
+import SettingsManagement from '../components/SettingsManagement';
 
 const Index = () => {
   const [activeItem, setActiveItem] = useState('dashboard');
@@ -53,6 +53,8 @@ const Index = () => {
         return <WhatsAppLogsManagement />;
       case 'pagamenti':
         return <PaymentsManagement />;
+      case 'settings':
+        return <SettingsManagement />;
       default:
         return (
           <div className="space-y-6">
