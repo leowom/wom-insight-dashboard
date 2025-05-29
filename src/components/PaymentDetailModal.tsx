@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { ComposedChart, Bar, Line, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 import { Download, Send, CreditCard, FileText, Euro } from 'lucide-react';
 
 interface PaymentDetailModalProps {
@@ -40,6 +40,10 @@ const PaymentDetailModal = ({ terapista, onClose }: PaymentDetailModalProps) => 
     commission: {
       label: "Commissione",
       color: "hsl(var(--chart-1))",
+    },
+    trend: {
+      label: "Trend",
+      color: "#3B82F6",
     },
   };
 
@@ -100,18 +104,27 @@ const PaymentDetailModal = ({ terapista, onClose }: PaymentDetailModalProps) => 
             <CardContent>
               <ChartContainer config={chartConfig} className="h-[250px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={monthlyHistory}>
+                  <ComposedChart data={monthlyHistory}>
                     <XAxis dataKey="month" />
                     <YAxis />
                     <ChartTooltip 
                       content={<ChartTooltipContent />}
                       formatter={(value, name) => {
                         if (name === 'commission') return [`€${value}`, 'Commissione'];
+                        if (name === 'trend') return [`€${value}`, 'Trend'];
                         return [`${value}`, 'Pazienti'];
                       }}
                     />
                     <Bar dataKey="commission" fill="var(--color-commission)" radius={[4, 4, 0, 0]} />
-                  </BarChart>
+                    <Line 
+                      type="monotone" 
+                      dataKey="commission" 
+                      stroke="var(--color-trend)" 
+                      strokeWidth={3}
+                      dot={{ fill: "var(--color-trend)", strokeWidth: 2, r: 4 }}
+                      activeDot={{ r: 6, fill: "var(--color-trend)" }}
+                    />
+                  </ComposedChart>
                 </ResponsiveContainer>
               </ChartContainer>
             </CardContent>
