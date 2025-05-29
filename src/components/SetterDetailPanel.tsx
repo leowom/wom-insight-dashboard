@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
@@ -394,7 +393,7 @@ const SetterDetailPanel: React.FC<SetterDetailPanelProps> = ({ setter, onClose }
               </div>
               {setter.showRate >= 80 && (
                 <div className="flex justify-between items-center text-blue-600">
-                  <span>Performance Bonus (>80% show rate):</span>
+                  <span>Performance Bonus (&gt;80% show rate):</span>
                   <span className="font-medium">+€{Math.round(setter.shows * 0.5)}</span>
                 </div>
               )}
