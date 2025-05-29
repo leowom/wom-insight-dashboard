@@ -9,6 +9,7 @@ import AppSettersManagement from '../components/AppSettersManagement';
 import ProspectTerapistiManagement from '../components/ProspectTerapistiManagement';
 import LandingPagesManagement from '../components/LandingPagesManagement';
 import CampaignsManagement from '../components/CampaignsManagement';
+import WhatsAppLogsManagement from '../components/WhatsAppLogsManagement';
 import Breadcrumb from '../components/Breadcrumb';
 
 const Index = () => {
@@ -47,6 +48,8 @@ const Index = () => {
         return <LandingPagesManagement />;
       case 'campagne':
         return <CampaignsManagement />;
+      case 'whatsapp-logs':
+        return <WhatsAppLogsManagement />;
       default:
         return (
           <div className="space-y-6">
