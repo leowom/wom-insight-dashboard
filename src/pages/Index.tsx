@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import DashboardContent from '../components/DashboardContent';
+import TerapistiManagement from '../components/TerapistiManagement';
 import Breadcrumb from '../components/Breadcrumb';
 
 const Index = () => {
@@ -30,15 +31,7 @@ const Index = () => {
       case 'dashboard':
         return <DashboardContent />;
       case 'terapisti':
-        return (
-          <div className="space-y-6">
-            <Breadcrumb items={['Gestione', 'Terapisti']} />
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-              <h2 className="text-2xl font-bold mb-4">Gestione Terapisti</h2>
-              <p className="text-gray-600">Qui puoi gestire tutti i terapisti della clinica.</p>
-            </div>
-          </div>
-        );
+        return <TerapistiManagement />;
       case 'pazienti':
         return (
           <div className="space-y-6">
