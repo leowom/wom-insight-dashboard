@@ -17,7 +17,7 @@ const CampaignsManagement = () => {
   const [showCreateWizard, setShowCreateWizard] = useState(false);
   const [showAnalytics, setShowAnalytics] = useState(false);
 
-  // Mock campaign data
+  // Mock campaign data with all required properties
   const campaigns = [
     {
       id: '1',
@@ -68,6 +68,7 @@ const CampaignsManagement = () => {
       clicks: 156,
       ctr: 2.79,
       leads: 18,
+      cpl: 8.90,
       roas: 5.8,
       trend: 'up',
       alerts: []
@@ -112,6 +113,11 @@ const CampaignsManagement = () => {
         ? prev.filter(id => id !== campaignId)
         : [...prev, campaignId]
     );
+  };
+
+  const safeCplAverage = () => {
+    const validCpls = campaigns.filter(c => c.cpl != null).map(c => c.cpl);
+    return validCpls.length > 0 ? (validCpls.reduce((sum, cpl) => sum + cpl, 0) / validCpls.length) : 0;
   };
 
   return (
@@ -161,8 +167,8 @@ const CampaignsManagement = () => {
             <CardTitle className="text-sm font-medium text-gray-600">Spesa Totale Oggi</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">€{campaigns.reduce((sum, c) => sum + c.spendToday, 0).toFixed(2)}</div>
-            <p className="text-xs text-gray-500">Budget giornaliero: €{campaigns.reduce((sum, c) => sum + c.dailyBudget, 0)}</p>
+            <div className="text-2xl font-bold">€{campaigns.reduce((sum, c) => sum + (c.spendToday || 0), 0).toFixed(2)}</div>
+            <p className="text-xs text-gray-500">Budget giornaliero: €{campaigns.reduce((sum, c) => sum + (c.dailyBudget || 0), 0)}</p>
           </CardContent>
         </Card>
         
@@ -171,7 +177,7 @@ const CampaignsManagement = () => {
             <CardTitle className="text-sm font-medium text-gray-600">Lead Generati</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{campaigns.reduce((sum, c) => sum + c.leads, 0)}</div>
+            <div className="text-2xl font-bold">{campaigns.reduce((sum, c) => sum + (c.leads || 0), 0)}</div>
             <p className="text-xs text-green-600">+15% vs ieri</p>
           </CardContent>
         </Card>
@@ -181,7 +187,7 @@ const CampaignsManagement = () => {
             <CardTitle className="text-sm font-medium text-gray-600">CPA Medio</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">€{(campaigns.reduce((sum, c) => sum + c.cpl, 0) / campaigns.length).toFixed(2)}</div>
+            <div className="text-2xl font-bold">€{safeCplAverage().toFixed(2)}</div>
             <p className="text-xs text-red-600">+€2.30 vs obiettivo</p>
           </CardContent>
         </Card>
@@ -292,9 +298,9 @@ const CampaignsManagement = () => {
                   
                   <TableCell>
                     <div>
-                      <div className="font-medium">€{campaign.spendToday.toFixed(2)}</div>
+                      <div className="font-medium">€{(campaign.spendToday || 0).toFixed(2)}</div>
                       <Progress 
-                        value={(campaign.spendToday / campaign.dailyBudget) * 100} 
+                        value={campaign.dailyBudget > 0 ? ((campaign.spendToday || 0) / campaign.dailyBudget) * 100 : 0} 
                         className="h-2 mt-1"
                       />
                     </div>
@@ -302,28 +308,28 @@ const CampaignsManagement = () => {
                   
                   <TableCell>
                     <div>
-                      <div className="text-sm">{campaign.impressions.toLocaleString()} impressioni</div>
-                      <div className="text-sm">{campaign.clicks} click</div>
-                      <div className="text-sm font-medium">CTR: {campaign.ctr}%</div>
+                      <div className="text-sm">{(campaign.impressions || 0).toLocaleString()} impressioni</div>
+                      <div className="text-sm">{campaign.clicks || 0} click</div>
+                      <div className="text-sm font-medium">CTR: {(campaign.ctr || 0).toFixed(1)}%</div>
                     </div>
                   </TableCell>
                   
                   <TableCell>
                     <div className="text-center">
-                      <div className="text-lg font-bold">{campaign.leads}</div>
+                      <div className="text-lg font-bold">{campaign.leads || 0}</div>
                       <div className="text-xs text-gray-500">questo mese</div>
                     </div>
                   </TableCell>
                   
                   <TableCell>
-                    <div className={`font-medium ${campaign.cpl > 15 ? 'text-red-600' : campaign.cpl < 10 ? 'text-green-600' : 'text-yellow-600'}`}>
-                      €{campaign.cpl.toFixed(2)}
+                    <div className={`font-medium ${(campaign.cpl || 0) > 15 ? 'text-red-600' : (campaign.cpl || 0) < 10 ? 'text-green-600' : 'text-yellow-600'}`}>
+                      €{(campaign.cpl || 0).toFixed(2)}
                     </div>
                   </TableCell>
                   
                   <TableCell>
-                    <div className={`font-medium ${campaign.roas > 4 ? 'text-green-600' : campaign.roas > 2 ? 'text-yellow-600' : 'text-red-600'}`}>
-                      {campaign.roas.toFixed(1)}x
+                    <div className={`font-medium ${(campaign.roas || 0) > 4 ? 'text-green-600' : (campaign.roas || 0) > 2 ? 'text-yellow-600' : 'text-red-600'}`}>
+                      {(campaign.roas || 0).toFixed(1)}x
                     </div>
                   </TableCell>
                   
