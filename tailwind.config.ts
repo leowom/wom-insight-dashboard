@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				mono: ['JetBrains Mono', 'monospace'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -25,7 +30,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
+					DEFAULT: '#3B82F6',
 					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
@@ -33,7 +38,7 @@ export default {
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
 				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
+					DEFAULT: '#EF4444',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
 				muted: {
@@ -52,16 +57,39 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				success: {
+					DEFAULT: '#10B981',
+					50: '#ECFDF5',
+					100: '#D1FAE5',
+					500: '#10B981',
+					600: '#059669',
+				},
+				warning: {
+					DEFAULT: '#F59E0B',
+					50: '#FFFBEB',
+					100: '#FEF3C7',
+					500: '#F59E0B',
+					600: '#D97706',
+				},
+				danger: {
+					DEFAULT: '#EF4444',
+					50: '#FEF2F2',
+					100: '#FEE2E2',
+					500: '#EF4444',
+					600: '#DC2626',
+				},
+				gray: {
+					50: '#F9FAFB',
+					100: '#F3F4F6',
+					200: '#E5E7EB',
+					300: '#D1D5DB',
+					400: '#9CA3AF',
+					500: '#6B7280',
+					600: '#4B5563',
+					700: '#374151',
+					800: '#1F2937',
+					900: '#111827',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
