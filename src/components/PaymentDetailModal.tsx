@@ -39,10 +39,10 @@ const PaymentDetailModal = ({ terapista, onClose }: PaymentDetailModalProps) => 
   const chartConfig = {
     commission: {
       label: "Commissione",
-      color: "hsl(var(--chart-1))",
+      color: "#10B981",
     },
-    trend: {
-      label: "Trend",
+    patients: {
+      label: "Pazienti",
       color: "#3B82F6",
     },
   };
@@ -102,27 +102,27 @@ const PaymentDetailModal = ({ terapista, onClose }: PaymentDetailModalProps) => 
               <CardTitle>Storico Commissioni (Ultimi 6 Mesi)</CardTitle>
             </CardHeader>
             <CardContent>
-              <ChartContainer config={chartConfig} className="h-[250px]">
+              <ChartContainer config={chartConfig} className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <ComposedChart data={monthlyHistory}>
+                  <ComposedChart data={monthlyHistory} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                     <XAxis dataKey="month" />
                     <YAxis />
                     <ChartTooltip 
                       content={<ChartTooltipContent />}
                       formatter={(value, name) => {
                         if (name === 'commission') return [`€${value}`, 'Commissione'];
-                        if (name === 'trend') return [`€${value}`, 'Trend'];
-                        return [`${value}`, 'Pazienti'];
+                        if (name === 'patients') return [`${value}`, 'Pazienti'];
+                        return [value, name];
                       }}
                     />
-                    <Bar dataKey="commission" fill="var(--color-commission)" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="commission" fill="#10B981" radius={[4, 4, 0, 0]} />
                     <Line 
                       type="monotone" 
                       dataKey="commission" 
-                      stroke="var(--color-trend)" 
+                      stroke="#3B82F6" 
                       strokeWidth={3}
-                      dot={{ fill: "var(--color-trend)", strokeWidth: 2, r: 4 }}
-                      activeDot={{ r: 6, fill: "var(--color-trend)" }}
+                      dot={{ fill: "#3B82F6", strokeWidth: 2, r: 4 }}
+                      activeDot={{ r: 6, fill: "#3B82F6" }}
                     />
                   </ComposedChart>
                 </ResponsiveContainer>
